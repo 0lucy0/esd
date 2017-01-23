@@ -1,0 +1,93 @@
+<?php
+?>
+<html>
+	<head>
+		<title>Map</title>
+		<link rel="icon" type="image/x-icon" href="http://lucymap.com/favicon.ico">
+		
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
+		<link rel="stylesheet" href="css.css">
+		
+		<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
+
+		<script src="https://www.mapquestapi.com/sdk/leaflet/v2.2/mq-map.js?key=qdqJPpJ3WSo2gSleQJOZbe26tI0k5uRG"></script>
+		<script src="https://www.mapquestapi.com/sdk/leaflet/v2.2/mq-routing.js?key=qdqJPpJ3WSo2gSleQJOZbe26tI0k5uRG"></script>
+
+		<script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
+		<style>
+			#map {
+				width: 1200px;
+				height: 700px;
+			}
+		</style>
+
+	</head>
+	<body>
+			<?php include 'latlong.php' ?>
+
+		<div id="map"></div>
+		<script>
+			var map = L.map('map').setView([51.627186, -0.752795], 15);
+			
+			
+			
+
+			L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', 
+				{
+					attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+				}).addTo(map);
+
+			/*var LeafIcon = L.Icon.extend({
+				options: {
+					shadowUrl: 'images/leaf-shadow.png',
+					iconSize:     [38, 95], // size of the icon
+					shadowSize:   [50, 64], // size of the shadow
+					iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+					shadowAnchor: [4, 62],// the same for the shadow
+					popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+					}
+				});*/
+			var SpeechIcon = L.Icon.extend(
+			{
+				options:{
+					iconSize:     [90, 95], // size of the icon
+					iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+					popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+					}
+				});
+				
+
+
+
+			//var greenIcon = new LeafIcon({iconUrl: 'images/leaf-green.png'}),
+				//redIcon = new LeafIcon({iconUrl: 'images/leaf-red.png'}),
+				//orangeIcon = new LeafIcon({iconUrl: 'images/leaf-orange.png'});
+				//speechIcon = new SpeechIcon({iconUrl: 'images/speech.png'});
+
+			//L.marker([51.624998, -0.753327], {icon: greenIcon}).bindPopup("Wycombe Abbey School War Gate").addTo(map);
+			//L.marker([51.629300, -0.751453], {icon: redIcon}).bindPopup("The Guildhall").addTo(map);
+			//L.marker([51.629909, -0.750718], {icon: orangeIcon}).bindPopup("The Parish Church").addTo(map);
+			//L.marker([51.627608, -0.751852], {icon: speechIcon}).bindPopup("Bucks New Uni").addTo(map);
+			
+			for ( var i = 0; i < result.length; i ++) {
+				marker = new L.marker([result[i][ 1 ],result[i][ 2]], {icon: speechIcon})
+				.addTo(map);
+				}
+				
+				
+			</script>
+<?php
+	echo "Hello";
+	include("dbconnect.php");
+	?>
+
+	</body>
+</html>
+<?php
+?>
